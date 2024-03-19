@@ -2,17 +2,21 @@ version: '3'
 
 services:
   product-service:
+    container_name: c_03-python
     build: ./product
     volumes:
       - ./product:/usr/src/app
+    restart: always
     ports:
-      - 5001:80
+      - 6003:80
 
   website:
     image: php:apache
+    container_name: c_03-php-apache
     volumes:
       - ./website:/var/www/html
+    restart: always
     ports:
-      - 5000:80
+      - 6004:80
     depends_on:
       - product-service
